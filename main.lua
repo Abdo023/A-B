@@ -5,5 +5,8 @@
 -----------------------------------------------------------------------------------------
 
 -- Your code here
+
+screen = require ( "Utils.screen")
+
 local composer = require ("composer")
 composer.gotoScene( "Controller.GameSceneController" )
