@@ -9,4 +9,4 @@
 screen = require ( "Utils.screen")
 
 local composer = require ("composer")
-composer.gotoScene( "Controller.GameSceneController" )
+composer.gotoScene( "Scenes.GameScene" )
