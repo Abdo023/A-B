@@ -4,16 +4,38 @@ display.setDefault( "background", 245/255, 166/255, 35/255 )
 
 gameView.group = display.newGroup( )
 
-gameView.topBox = display.newRoundedRect( gameView.group, 0,0, 360, 150, 5 )
-gameView.topBox.x = screen.cX
-gameView.topBox.y = 160
-gameView.topBox.strokeWidth = 3
-gameView.topBox:setStrokeColor( 127/255, 101/255, 56/255 )
+function gameView.topBox(  )	
+	local box = display.newRoundedRect( gameView.group, 0,0, 360, 150, 5 )
+	box.x = screen.cX
+	box.y = 160
+	box.strokeWidth = 3
+	box:setStrokeColor( 127/255, 101/255, 56/255 )
+	box.name = "topBox"
 
-gameView.bottomBox = display.newRoundedRect( gameView.group, 0,0, 360, 150, 5 )
-gameView.bottomBox.x = screen.cX
-gameView.bottomBox.y = screen.bottom - 160
-gameView.bottomBox.strokeWidth = 3
-gameView.bottomBox:setStrokeColor( 127/255, 101/255, 56/255 )
+	return box
+end
+
+function gameView.bottomBox(  )
+	local box = display.newRoundedRect( gameView.group, 0,0, 360, 150, 5 )
+	box.x = screen.cX
+	box.y = screen.bottom - 160
+	box.strokeWidth = 3
+	box:setStrokeColor( 127/255, 101/255, 56/255 )
+	box.name = "bottomBox"
+
+	return box
+end
+
+function gameView.object(  )
+	local box = display.newRoundedRect( gameView.group, 0,0, 145, 50, 0 )
+	box.x = screen.cX
+	box.y = screen.cY
+	box.strokeWidth = 3
+	box:setFillColor( 1,1,1,0.1 )
+	box:setStrokeColor( 127/255, 101/255, 56/255 )
+
+	return box
+end
+
 
 return gameView

@@ -1,9 +1,29 @@
-local intersection = {}
+local math2 = {}
 
+-- Declare math libraries
+math2.mSqrt = math.sqrt
+math2.mRand = math.random
+math2.mRound = math.round
+
+-- Get distance between 2 objects
+math2.getDistance = function ( obj1, obj2 )
+    local factor = {
+        x = obj2.x - obj1.x,
+        y = obj2.y - obj1.y
+    }
+    return math2.mSqrt((factor.x * factor.x) + (factor.y * factor.y))
+end
+
+math2.getYDistance = function ( y1, y2 )
+    local factor = {
+        y = y2 - y1
+    }
+    return math2.mSqrt(factor.y * factor.y)
+end
 
 --Check for non-physics intersections
 
-function intersection.checkIntersection(obj1, obj2)
+function math2.checkIntersection(obj1, obj2)
     if obj1 == nil then
     	print( "Obj1 = nil" )
         return false
@@ -19,7 +39,7 @@ function intersection.checkIntersection(obj1, obj2)
     return (left or right) and (up or down) 
 end 
 
-function intersection.checkIntersectionCircle( obj1, obj2 )
+function math2.checkIntersectionCircle( obj1, obj2 )
     if ( obj1 == nil ) then  -- Make sure the first object exists
     	print( "Obj1 = nil" )
         return false
@@ -42,4 +62,4 @@ function intersection.checkIntersectionCircle( obj1, obj2 )
     return false
 end
 
-return intersection
+return math2
