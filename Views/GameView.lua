@@ -1,5 +1,8 @@
 local gameView = {}
 
+local button = require( "Views.Button")
+local layout = require( "Views.Layout")
+
 display.setDefault( "background", 245/255, 166/255, 35/255 )
 
 gameView.group = display.newGroup( )
@@ -89,17 +92,75 @@ function gameView.object(  )
 
 	objectGroup.box = box
 	objectGroup.text = text
-	gameView.group.objectGroup = box
+	gameView.group.objectGroup = objectGroup
 	gameView.group:insert( objectGroup )
 	return objectGroup
 end
 
-function gameView.resultBanner(  )
+function gameView.reasonBanner(  )
+	local group = display.newGroup( )
+	group.x = screen.cX
+	group.y = screen.cY
 
+	-- Create the box
+	local box = display.newRect( group, 0, 0, 290, 100 )
+	box:setFillColor( 179/255, 121/255, 25/255 )
+
+	-- Create the text
+	local options = {
+		parent = objectGroup,
+		width = 250,
+		text = "Group A: Colors \nGroup B: Fruits",
+		font = native.newFont( "AvenirNext-Medium", 16 ),
+		align = "left"
+	}
+	local text = display.newText( options)
+	text:setFillColor( 1,1,1 )
+
+	-- CreateButton
+
+	local btn = button.new({width=60, height=20, buttonColor={1,1,1}, label="OK", labelColor= {179/255, 121/255, 25/255}, font="AvenirNext-Medium"})
+	btn.y = box.height/2 - btn.height/2
+
+	group.box = box
+	group:insert( box )
+	group.text = text
+	group:insert( text )
+	group.button = btn
+	group:insert( btn )
+	gameView.group.reasonGroup = group
+	gameView.group:insert( group )
+	return group
 end
 
+function gameView.levelBar(  )
+	local group = display.newGroup( )
+	gameView.group.levelBar = group
+	gameView.group:insert( group )
+	--Create layour group
+	local l = layout.horizontalLayout(200)
+	l.x = screen.cX
+	l.y = 40
+	group.layOut = l
+	group:insert( l )
 
+	return group
+end
 
+function gameView.levelText(  )
+	local text = display.newText( {
+		parent = gameView.group,
+		text = "Level 1",
+		font = native.newFont( "Avenir Next", 16 ),
+		align = "center"
+	} )
+	text.x = text.width
+	text.y = gameView.group.levelBar.layOut.y
+
+	gameView.group.levelText = text
+	gameView.group:insert( text )
+	return text
+end
 
 
 return gameView

@@ -4,6 +4,20 @@ local math2 = {}
 math2.mSqrt = math.sqrt
 math2.mRand = math.random
 math2.mRound = math.round
+math2.cos = math.cos
+math2.sin = math.sin
+math2.rad = math.rad
+math2.deg = math.deg
+math2.atan = math.atan
+math2.atan2 = math.atan2
+math2.max = math.max
+math2.min = math.min
+math2.floor = math.floor
+math2.ceil = math.ceil
+math2.pi = math.pi
+math2.pi2 = math2.pi * 2
+math2.abs = math.abs
+
 
 -- Get distance between 2 objects
 math2.getDistance = function ( obj1, obj2 )
@@ -61,5 +75,51 @@ function math2.checkIntersectionCircle( obj1, obj2 )
 
     return false
 end
+
+function math2.calculatePercentage( value, max )
+    return ( value / max ) * 100
+end
+
+
+--- Gets a heading vector for an angle.
+function math2.vectorFromAngle( angle )
+    return { x = math2.cos( math2.rad( angle - 90 ) ), y = math2.sin( math2.rad( angle - 90 ) ) }
+end
+
+--- Gets the angle between two position vectors.
+-- vector1 The first position.
+-- vector2 The second position.
+function math2.angleBetweenVectors( vector1, vector2 )
+    return math2.deg( math2.atan2( vector2.y - vector1.y, vector2.x - vector1.x ) ) - 90
+end
+
+--- Limits a rotation to a max rate.
+-- @param current The current rotation.
+-- @param target The target rotation.
+-- @param maxRate The maximum number of degrees the rotation can go to.
+-- @return The newly limited angle.
+function math2.limitRotation( current, target, maxRate )
+
+    if current and target and maxRate then
+
+        local angle = target
+
+        local d = current - angle
+
+        --Look for alternative 
+        --d = self:normaliseAngle( d )
+
+        if d > maxRate then
+            angle = current - maxRate
+        elseif d < -maxRate then
+            angle = current + maxRate
+        end
+
+        return angle
+
+    end
+
+end
+
 
 return math2

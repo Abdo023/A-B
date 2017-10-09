@@ -6,8 +6,7 @@ Q.questions = {
 	 	groupB = "Cat-Dog-Horse",
 	 	object = "Yellow",
 	 	correct = "a",
-	 	reason = [[Group A: Colors
-	 				Group B: Animals]],
+	 	reason = "Group A: Colors \nGroup B: Animals",
 		id = 1
 	},
 	{
@@ -15,8 +14,7 @@ Q.questions = {
 		groupB = "Eggplant-Corn-Celery",
 		object = "Broccoli",
 		correct = "b",
-		reason = [[Group A: Fruits
-	 				Group B: Vegetables]],
+		reason = "Group A: Fruits \nGroup B: Vegetables",
 	 	id = 2
 	},
 	{
@@ -24,8 +22,7 @@ Q.questions = {
 		groupB = "Japan-China-India",
 		object = "Taiwan",
 		correct = "b",
-		reason = [[Group A: European Countries
-	 				Group B: Asian Countries]],
+		reason = "Group A: European Countries \nGroup B: Asian Countries",
 		id = 3
 	},
 	{
@@ -33,8 +30,7 @@ Q.questions = {
 		groupB = "Tom Hanks-Will Smith-Al Pacino",
 		object = "Julia Roberts",
 		correct = "b",
-		reason = [[Group A: Scientist
-	 				Group B: Actors]],
+		reason = "Group A: Scientist \nGroup B: Actors",
 		id = 4
 	},
 	{
@@ -42,8 +38,7 @@ Q.questions = {
 		groupB = "Eagle-Owl-Chicken",
 		object = "Dog",
 		correct = "a",
-		reason = [[Group A: Animals
-	 				Group B: Birds]],
+		reason = "Group A: Animals \nGroup B: Birds",
 		id = 5
 	},
 	{
@@ -51,8 +46,7 @@ Q.questions = {
 		groupB = "Apartment-Villa-House",
 		object = "",
 		correct = "a",
-		reason = [[Group A: Furniture
-	 				Group B: Residence]],
+		reason = "Group A: Furniture \nGroup B: Residence",
 		id = 6
 	},
 	{

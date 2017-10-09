@@ -9,7 +9,10 @@ local scene = composer.newScene()
 
 -- Modules
 local gameView = require( "Views.GameView" )
-local data = require( "Data.Questions")
+local drawing = require( "Views.Drawing")
+local anims = require( "Views.Animations" )
+local questionsData = require( "Data.Questions")
+local gameData = require( "Data.GameData" )
 
 -- View
 local topBox = gameView.topBox()
@@ -17,21 +20,60 @@ local bottomBox = gameView.bottomBox()
 local groupAText = gameView.groupAText()
 local groupBText = gameView.groupBText()
 local objectGroup = gameView.object()
---local objectText = gameView.objectText()
+local reasonGroup = gameView.reasonBanner()
+local levelBarGroup = gameView.levelBar()
+local levelText = gameView.levelText()
 
 -- Variables
-local questions = data.questions
+local questions = questionsData.questions
 local currentQuestion
 local currentBox  -- holds current box the object is intersectin with
 local currentChoice
 
 -- Functions
+function createLevelBars( group )
+    for i=1,gameData.levelTarget do
+        local bar = display.newRoundedRect( group, 0, 0, 50, 14, 2 )
+        bar.strokeWidth = 2
+        bar:setStrokeColor( 154/255,105/255,25/255 )
+        bar:setFillColor( 248/255,231/255,28/255, 0.2 )
+        gameView.group.levelBar.layOut.add(bar)
+    end
+end
+
+-- Called in checkSolution(), onReasonButton()
+function editLevelBars(  )
+    local child = gameData.levelProgress
+    if child > 0 then
+        -- Add bar
+        gameView.group.levelBar.layOut.children[child]:setFillColor( 248/255,231/255,28/255 )    
+
+        if gameData.levelProgress >= gameData.levelTarget then
+            --levelProgressAnimation()
+        end
+    else 
+        -- New level
+        for i=1,#gameView.group.levelBar.layOut.children do
+                gameView.group.levelBar.layOut.children[i]:setFillColor( 248/255,231/255,28/255, 0.2 )   
+            end      
+            --levelProgressAnimation()
+    end
+end
+
+-- Called in onReasonButton()
+function levelProgressAnimation(  )
+    levelText.text = "Level "..gameData.currentLevel
+    anims.scale(levelText, 200)
+end
+
+-- Called in onReasonButton
 function assignData(  )
     local rand = math2.mRand(1,#questions)
     currentQuestion = questions[rand]
     groupAText.text = currentQuestion.groupA
     groupBText.text = currentQuestion.groupB
     objectGroup.text.text = currentQuestion.object
+    reasonGroup.text.text = currentQuestion.reason
     --groupAText.text = questions[4].groupA
 end
 
@@ -39,11 +81,13 @@ end
 function checkSolution(  )
     if currentQuestion.correct == currentChoice then
         print("Correct Answer")
+        gameData.addProgress()
+        editLevelBars()
     else
         print( "Wrong Answer" )
     end
     objectGroup.y = screen.cY
-    assignData()
+    reasonGroup.isVisible = true
 end
 
 -- Called in checkObjectIn
@@ -57,6 +101,7 @@ function objectEffect( status )
     end
 end
 
+-- Called in onObjectTouch()
 local function checkObjectIn( target,box )
     if math2.checkIntersection(target,box) then
         if box.name == "topBox" then
@@ -98,10 +143,19 @@ local function onObjectTouch( event )
         else
             target.y = screen.cY
         end
-        
+        objectEffect("out")
     end
 end
 
+local function onReasonButton( event )
+    -- Check if  current level is completed
+    if gameData.checkProgress() then
+        levelProgressAnimation()
+        editLevelBars()
+    end
+    assignData()
+    reasonGroup.isVisible = false
+end
 -- -----------------------------------------------------------------------------------
 -- Scene event functions
 -- -----------------------------------------------------------------------------------
@@ -113,11 +167,17 @@ function scene:create( event )
     -- Code here runs when the scene is first created but has not yet appeared on screen
     sceneGroup:insert( gameView.group )
 
+    createLevelBars(sceneGroup)
+    editLevelBars()
+    --reasonGroup.isVisible = false
+
     assignData()
 
-    print( "Object Group.y: "..objectGroup.y )
+    reasonGroup.button.setAction( onReasonButton )
+    reasonGroup.isVisible = false
 
     objectGroup:addEventListener( "touch", onObjectTouch )
+    print( gameData.difficulty )
 end
 
 
