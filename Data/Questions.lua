@@ -1,5 +1,5 @@
 local Q = {}
-
+Q.newQ = {}
 Q.questions = {
 	{
 		groupA = "Red-Blue-Green",
@@ -44,20 +44,12 @@ Q.questions = {
 	{
 		groupA = "Table-Chair-Bed",
 		groupB = "Apartment-Villa-House",
-		object = "",
+		object = "Sofa",
 		correct = "a",
 		reason = "Group A: Furniture \nGroup B: Residence",
 		id = 6
 	},
-	{
-		groupA = "",
-		groupB = "",
-		object = "",
-		correct = "",
-		reason = [[
-	 				]],
-		id = 7
-	}
+	
 }
 
 

@@ -15,20 +15,21 @@ local collection = view.levelCollection()
 
 -- Variables
 local difficulties = {"Novice", "Educated", "Knowledgable", "Intelligent"}
-local actions = {a,b,c}
 
 
 -- Functions
+
 function onCollectionButton( event )
     if event.target.id == 1 then
-        gameData.setDifficulty("novice")
+        gameData.setDifficulty(1)
     elseif event.target.id == 2 then
-        gameData.setDifficulty("educated")
+        gameData.setDifficulty(2)
     elseif event.target.id == 3 then
-        gameData.setDifficulty("knowledgable")
+        gameData.setDifficulty(3)
     elseif event.target.id == 4 then
-        gameData.setDifficulty("intelligent")
+        gameData.setDifficulty(4)
     end
+    gameData.setLevel()
     composer.gotoScene( "Scenes.GameScene" )
 end
 -- -----------------------------------------------------------------------------------

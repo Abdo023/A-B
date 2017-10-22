@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "421273055545",
+    "firebase_url": "https://a-b-quiz.firebaseio.com",
+    "project_id": "a-b-quiz",
+    "storage_bucket": "a-b-quiz.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:421273055545:android:18f2b2b148f4680b",
+        "android_client_info": {
+          "package_name": "com.Abdo23.A_B"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "421273055545-oafidbik41v4bvvih0fjkqao9j3034qj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCpkXzwPqUfa5jlwylSWYIeySCHQ7X6HcM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

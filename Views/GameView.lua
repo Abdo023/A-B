@@ -3,7 +3,19 @@ local gameView = {}
 local button = require( "Views.Button")
 local layout = require( "Views.Layout")
 
-display.setDefault( "background", 245/255, 166/255, 35/255 )
+
+local paint = {
+    type = "gradient",
+    color1 = { 88/255, 61/255, 255/255 },
+    color2 = { 48/255, 35/255, 174/255 },
+    direction = "down"
+}
+ 
+local rect = display.newRect( screen.cX, screen.cY, screen.width, screen.height )
+rect.fill = paint
+rect:toBack()
+
+--display.setDefault( "background", 245/255, 166/255, 35/255 )
 
 gameView.group = display.newGroup( )
 

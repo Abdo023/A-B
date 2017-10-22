@@ -25,8 +25,8 @@ local levelBarGroup = gameView.levelBar()
 local levelText = gameView.levelText()
 
 -- Variables
-local questions = questionsData.questions
-local currentQuestion
+local questions = questionsData.newQ.Questions
+local currentQuestion  -- Assigned in assignData()
 local currentBox  -- holds current box the object is intersectin with
 local currentChoice
 
@@ -177,7 +177,6 @@ function scene:create( event )
     reasonGroup.isVisible = false
 
     objectGroup:addEventListener( "touch", onObjectTouch )
-    print( gameData.difficulty )
 end
 
 
